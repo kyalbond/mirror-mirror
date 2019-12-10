@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.AlertDialogLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:layout_gravity="center"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="24dp"
+        android:text="Record Weight"/>
+
+    <LinearLayout
+        android:layout_width="500dp"
+        android:layout_height="350dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:padding="5dp">
+            <com.shawnlin.numberpicker.NumberPicker
+                android:id="@+id/weight_picker_left"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="40dp"
+                android:text="."/>
+            <com.shawnlin.numberpicker.NumberPicker
+                android:id="@+id/weight_picker_right"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="24dp"
+                android:text="KG"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:padding="5dp">
+            <Button
+                android:id="@+id/cancel_button"
+                android:text="Cancel"
+                android:textSize="24dp"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/submit_button"
+                android:text="Submit"
+                android:textSize="24dp"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.AlertDialogLayout>

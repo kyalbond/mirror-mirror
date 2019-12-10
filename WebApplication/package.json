@@ -1,0 +1,35 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "gulp": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^4.10.0",
+    "dateformat": "^2.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "file-system": "^2.2.2",
+    "socket.io": "^2.0.3",
+    "sqlite3": "^3.1.9"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "gulp": "^3.9.1",
+    "gulp-build": "^0.5.3",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jscs-stylish": "^1.4.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-mocha": "^4.3.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-util": "^3.0.8",
+    "i": "^0.3.5",
+    "jshint": "^2.9.5",
+    "mocha": "^3.5.0"
+  }
+}

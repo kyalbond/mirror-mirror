@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head><link rel="stylesheet" href="/css/bootstrap.min.css"></head>
+<body><br><br><br><br><br><br><br><br>
+  <div class = "container">
+    <div class = "container" style = "text-align:center">
+      <h1>Mirror Mirror</h1>
+      <h4>Registration</h4>
+    </div>
+    <div class = "container" style = "width: 50%">
+      <div class = "form-group">
+        <label class="control-label" for="focusedInput">User Name</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter Username">
+      </div>
+      <div class = "form-group">
+        <label class="control-label" for="focusedInput">First Name</label>
+        <input type="text" class="form-control" id="firstname" placeholder="Enter First Name">
+      </div>
+      <div class = "form-group">
+        <label class="control-label" for="focusedInput">Last Name</label>
+        <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
+      </div>
+      <div class = "form-group">
+        <label class="control-label" for="focusedInput">Height (cm)</label>
+        <input type="text" class="form-control" id="height" placeholder="Enter Height (cm)">
+      </div>
+      <div class = "form-group">
+        <label class="control-label" for="focusedInput">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter Password">
+      </div>
+      <div class = "form-group">
+        <label class="control-label" for="focusedInput">Repeat Password</label>
+        <input type="password" class="form-control" id="passwordRepeat" placeholder="Enter Password Again">
+      </div>
+    </div>
+    <div class = "container" style = "text-align:center">
+      <a href="#" class="btn btn-default btn-lg" id="registerBtn">Register</a>
+      <br><br>
+      <p class="text-danger" id="errLabel"></p>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+    $(function(){
+      var socket = io();
+      $('#registerBtn').click(function(){
+        if($('#password').val() === $('#passwordRepeat').val()){
+          socket.emit('registration event', {
+            username: $('#username').val(),
+            password:  $('#password').val(),
+            firstName:  $('#firstname').val(),
+            lastName:  $('#lastname').val(),
+            height:  $('#height').val(),
+           });
+        }else{
+          $('#errLabel').text("Passwords do not match");
+        }
+        return false;
+      });
+      socket.on('register response event', function(response){
+        if(response.success == false){
+          $('#errLabel').text(response.message);
+        }else{
+          window.location = "/home/" + response.uid;
+        }
+      });
+    });
+    </script>
+
+  </div>
+</body>
+</html>

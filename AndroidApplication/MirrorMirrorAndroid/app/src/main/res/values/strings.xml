@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MirrorMirror</string>
+    <string name="images_shared_preferences">123456789</string>
+    <string name="login_details">987654321</string>
+    <!--Descriptions for Accessibility-->
+    <string name="drawer_open"></string>
+    <string name="drawer_close"></string>
+</resources>

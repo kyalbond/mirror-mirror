@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <script src="/lib/jquery/dist/jquery.js"></script>
+  <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Mirror Mirror</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><h5><%=name%></h5></li>
+          <li><a href="/login">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <row>
+    <div class ="col-xs-2">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="/home/<%=uid%>">Home</a></li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+            View Weights Graphs <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/home/<%=uid%>/weights/7">Past Week</a></li>
+            <li><a href="/home/<%=uid%>/weights/30">Past Month</a></li>
+            <li><a href="/home/<%=uid%>/weights/365">Past Year</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class = "col-xs-10">
+
+      <h1>Weights for past <%=days%> days</h1>
+      <canvas id="myChart"></canvas>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+      <script>
+
+      var socket = io();
+      socket.emit('request weights event', {uid: <%=uid%>, numDays : <%=days%>});
+      socket.on('request weights success event', function(response){
+
+        var weights = [];
+        var labels = [];
+        for(var i = 0; i < response.length; i++){
+          weights.push(response[i].weight);
+          labels.push(response[i].date);
+        }
+        console.log(weights);
+        console.log(labels)
+
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Weight (kg)',
+              data: weights,
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255,99,132,1)',
+
+              borderWidth: 1
+            }]
+          },
+          options: {
+            legend: {
+              display: false
+            },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  // suggestedMin: 50,
+                  // suggestedMax: 100
+                }
+              }],
+              xAxes: [{
+                time: {
+                    unit: 'month'
+                }
+            }]
+            }
+          }
+        });
+
+      });
+
+
+      </script>
+    </div>
+  </row>
+
+</body>
+</html>

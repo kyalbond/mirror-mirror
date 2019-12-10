@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/weight7days" android:icon="@mipmap/ic_launcher"
+        android:title="Weight - Last 7 Days" android:checkable="true"/>
+    <item android:id="@+id/weight30days" android:icon="@mipmap/ic_launcher"
+        android:title="Weight - Last Month" android:checkable="true"/>
+    <item android:id="@+id/weight180days" android:icon="@mipmap/ic_launcher"
+        android:title="Weight - Last 6 Months" android:checkable="true"/>
+    <item android:id="@+id/weight365days" android:icon="@mipmap/ic_launcher"
+        android:title="Weight - Last Year" android:checkable="true"/>
+
+</menu>

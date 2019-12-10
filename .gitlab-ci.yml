@@ -1,0 +1,55 @@
+image: node:latest
+image: openjdk:8-jdk
+
+variables:
+  ANDROID_COMPILE_SDK: "25"
+  ANDROID_BUILD_TOOLS: "25.0.2"
+  ANDROID_SDK_TOOLS: "26.0.2"
+
+variables:
+  ANDROID_COMPILE_SDK: "25"
+  ANDROID_BUILD_TOOLS: "25.0.2"
+  ANDROID_SDK_TOOLS: "26.0.2"
+
+cache:
+  untracked: true
+  paths:
+    - node_modules/
+    - .gradle/wrapper
+    - .gradle/caches
+    - .gradle/build-cache
+    - android-sdk-linux/
+
+  
+before_script:
+  - echo 'Starting test'
+  - export ANDROID_HOME=$PWD/android-sdk-linux
+  - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
+  - export GRADLE_USER_HOME=`pwd`./AndroidApplication/MirrorMirrorAndroid/gradle
+  - chmod +x ./AndroidApplication/MirrorMirrorAndroid/gradlew
+  - echo 'finish setting up enviroment variables'
+  
+stages:
+  - echo 'starting stages'
+  - build_node
+  - build_android
+  
+build_node:
+  stage: build_node
+  script:
+    - echo 'Starting gulp build'
+    - cd WebApplication/
+    - npm install
+    - npm install gulp
+    - gulp build
+    - echo "Start Testing"
+    - npm run test
+
+build_android:
+  stage: build_android
+  script:
+    #- ./AndroidApplication/MirrorMirror/Android/gradlew assemble
+    - echo 'PLZ'
+  artifacts:
+    paths:
+    - app/build/outputs/

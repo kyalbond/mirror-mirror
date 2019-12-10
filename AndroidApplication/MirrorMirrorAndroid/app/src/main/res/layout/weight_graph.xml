@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/weight_graph_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:paddingTop="5dp"
+            android:text="Your Graph"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:textSize="26sp" />
+
+        <Button
+            android:id="@+id/graph_switch_button"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:text="Line Chart"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:id="@+id/graph"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:text="Number of Days"
+        android:paddingBottom="15dp"></TextView>
+
+</LinearLayout>
